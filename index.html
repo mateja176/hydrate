@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <button id="remount">Re-mount</button>
+      <button id="attach">Hydrate</button>
+    </div>
+    <br />
+    <br />
+    <button id="logger">Log</button>
+    <script>
+      const log = () => {
+        console.log('Test');
+      };
+
+      const addEventListeners = () => {
+        document.getElementById('logger').addEventListener('click', log);
+      };
+      addEventListeners();
+
+      document.getElementById('attach').addEventListener('click', () => {
+        alert('Log is now working again.');
+        addEventListeners();
+      });
+    </script>
+    <script>
+      // Re-attach
+      document.getElementById('remount').addEventListener('click', () => {
+        const newButton = document.createElement('button');
+        newButton.id = 'logger';
+        newButton.innerHTML = 'Log';
+        document.getElementById('logger').replaceWith(newButton);
+        alert(
+          "Log is not working anymore because it's doesn't have an event listener attached.",
+        );
+      });
+    </script>
+  </body>
+</html>
